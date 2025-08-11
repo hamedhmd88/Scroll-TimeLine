@@ -105,3 +105,85 @@ body {
   animation: fill-line linear forwards;
   animation-timeline: scroll(root);
 }
+
+
+/* Individual Timeline Section */
+.timeline-section {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-start;
+  padding: 4rem 0;
+  min-height: 300px;
+}
+
+/* Alternative Layout for even section */
+.timeline-section:nth-child(even) {
+  justify-content: flex-end;
+}
+
+/* The Dot on the Timeline */
+.timeline-marker {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 18px;
+  background-color: var(--bg-color);
+  border: 2px solid var(--line-color);
+  border-radius: 50%;
+  z-index: 3;
+  transition: background-color 0.3s, border-color 0.3s;
+
+  /* Animation marker when it is in the middle of scroll-timeline-name:  */
+  animation: light-up linear forwards;
+  animation-timeline: view();
+  animation-range: contain 40% contain 60%;
+
+
+
+}
+
+.timeline-content {
+  width: calc(50% - 40px);
+  padding: 2rem;
+  background: var(--card-bg);
+  border-radius: 12px;
+  border: 1px solid var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  position: relative;
+
+  /* Animation content as it enters the viewport */
+  animation: fade-in-up linear forwards;
+  animation-timeline: view();
+  animation-range: entry 20% cover 50%;
+}
+
+.timeline-section:nth-child(even) .timeline-content {
+  text-align: left;
+}
+
+.timeline-year {
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  font-weight: 500;
+  color: var(--primary-color);
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.timeline-title {
+  font-size: clamp(1.5rem, 4vw, 1.75rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+  line-height: 1.2;
+}
+
+.timeline-description {
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  line-height: 1.6;
+  font-weight: 300;
+}
