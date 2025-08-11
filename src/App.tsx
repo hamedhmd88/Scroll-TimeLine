@@ -50,9 +50,6 @@ function App() {
       <div className="scroll-hint">
         <RiArrowDownLine />
       </div>
-      <div className="container">
-        <h2>Hello World</h2>
-      </div>
       <main className="timeline-wrapper">
         <div className="timeline-line">
           <div className="timeline-line-progress"></div>
