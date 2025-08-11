@@ -45,24 +45,30 @@ body {
     );
 }
 
+/* ================================================
+   نوار پیشرفت اسکرول - Progress Bar بالای صفحه
+   ================================================ */
+
+/* نوار آبی که در بالای صفحه ظاهر می‌شود و با اسکرول پر می‌شود */
 .scroll-watcher {
-  height: 5px;
-  position: fixed;
-  top: 0;
-  z-index: 1000;
-  background-color: rgb(12, 41, 225);
-  width: 100%;
-  scale: 0 1;
-  transform-origin: left;
-  animation: scroll-watcher linear forwards;
-  animation-timeline: scroll(root);
-
-
+  height: 5px; /* ارتفاع باریک 5px */
+  position: fixed; /* ثابت در بالای صفحه - حتی با اسکرول جابجا نمی‌شود */
+  top: 0; /* چسبیده به بالای صفحه */
+  z-index: 1000; /* بالاتر از تمام عناصر دیگر */
+  background-color: rgb(12, 41, 225); /* رنگ آبی پررنگ */
+  width: 100%; /* عرض کامل صفحه */
+  scale: 0 1; /* ابتدا کاملاً مخفی (عرض 0) */
+  transform-origin: left; /* شروع انیمیشن از سمت چپ */
+  
+  /* انیمیشن پر شدن با اسکرول - بدون JavaScript */
+  animation: scroll-watcher linear forwards; /* انیمیشن خطی بدون برگشت */
+  animation-timeline: scroll(root); /* لینک به اسکرول کل صفحه */
 }
 
+/* انیمیشن پر شدن نوار از چپ به راست */
 @keyframes scroll-watcher {
   to {
-    scale: 1 1;
+    scale: 1 1; /* در انتها عرض کامل (100%) */
   }
 }
 /* ================================================
