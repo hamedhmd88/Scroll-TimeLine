@@ -8,3 +8,69 @@
   --card-bg: rgba(20, 20, 20, 0.5);
   --card-border: rgba(255, 255, 255, 0.1);
 }
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: sans-serif;
+    background-image: radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.04), transparent 30%),
+                      radial-gradient(circle at 90% 80%, rgba(74, 144, 226, 0.1), transparent 40%);
+}
+
+.page-header {
+  text-align: center;
+  padding: 10vh 2rem 5vh;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.page-header h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: var(--primary-color);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  letter-spacing: -0.03em;
+}
+
+.page-header p {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.scroll-hint {
+  margin-top: 3rem;
+  color: var(--text-color);
+  font-size: 2rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.scroll-hint i {
+  animation: bounce 2s infinite ease-in-out;
+}
+
+/* Main Timeline Container */
+.timeline-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 5vh 2rem 20vh;
+}
