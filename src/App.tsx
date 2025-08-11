@@ -36,9 +36,22 @@ function App() {
       description:
         "By 2027, I began mentoring new developers, sharing my knowledge, and contributing to open-source projects to give back to the community.",
     },
+    {
+      year: "2027",
+      title: "Becoming a Mentor",
+      description:
+        "By 2027, I began mentoring new developers, sharing my knowledge, and contributing to open-source projects to give back to the community.",
+    },
+    {
+      year: "2027",
+      title: "Becoming a Mentor",
+      description:
+        "By 2027, I began mentoring new developers, sharing my knowledge, and contributing to open-source projects to give back to the community.",
+    },
   ];
   return (
     <>
+    <div className="scroll-watcher"></div>
       <header className="page-header">
         <h1>The Journey Of Coding</h1>
         <p>

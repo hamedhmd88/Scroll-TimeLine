@@ -1,264 +1,351 @@
-/* Base Style & Variable */
+/* ================================================
+   تنظیمات پایه و متغیرهای رنگی
+   ================================================ */
+
+/* متغیرهای CSS برای رنگ‌ها - برای تغییر آسان تم رنگی */
 :root {
-  --bg-color: #0a0a0a;
-  --text-color: #d1d1d1;
-  --primary-color: #ffffff;
-  --accent-glow: rgba(74, 144, 226, 0.5);
-  --line-color: #222222;
-  --card-bg: rgba(20, 20, 20, 0.5);
-  --card-border: rgba(255, 255, 255, 0.1);
+  --bg-color: #0a0a0a; /* رنگ پس‌زمینه اصلی - مشکی تیره */
+  --text-color: #d1d1d1; /* رنگ متن اصلی - خاکستری روشن */
+  --primary-color: #ffffff; /* رنگ متن برجسته - سفید */
+  --accent-glow: rgba(74, 144, 226, 0.5); /* رنگ درخشش آبی - برای افکت‌های نور */
+  --line-color: #222222; /* رنگ خط تایم‌لاین - خاکستری تیره */
+  --card-bg: rgba(20, 20, 20, 0.5); /* رنگ پس‌زمینه کارت‌ها - مشکی نیمه‌شفاف */
+  --card-border: rgba(255, 255, 255, 0.1); /* رنگ حاشیه کارت‌ها - سفید بسیار کم‌رنگ */
 }
 
+/* تنظیمات اولیه برای تمام عناصر - ریست CSS */
 *,
 *::before,
 *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0; /* حذف حاشیه پیش‌فرض */
+  padding: 0; /* حذف فاصله داخلی پیش‌فرض */
+  box-sizing: border-box; /* محاسبه اندازه شامل حاشیه و padding */
 }
 
+/* تنظیم اسکرول نرم برای کل صفحه */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; /* اسکرول با انیمیشن نرم */
 }
 
+/* تنظیمات بدنه اصلی صفحه */
 body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  font-family: sans-serif;
+  background-color: var(--bg-color); /* رنگ پس‌زمینه از متغیر */
+  color: var(--text-color); /* رنگ متن از متغیر */
+  font-family: sans-serif; /* فونت پیش‌فرض سیستم */
+  
+  /* افکت گرادیان پس‌زمینه - ایجاد نورهای ملایم */
   background-image: radial-gradient(
-      circle at 10% 10%,
-      rgba(255, 255, 255, 0.04),
-      transparent 30%
+      circle at 10% 10%, /* نقطه شروع نور اول - بالا چپ */
+      rgba(255, 255, 255, 0.04), /* رنگ نور سفید کم‌رنگ */
+      transparent 30% /* محو شدن تا 30% */
     ),
-    radial-gradient(circle at 90% 80%, rgba(74, 144, 226, 0.1), transparent 40%);
+    radial-gradient(circle at 90% 80%, /* نقطه شروع نور دوم - پایین راست */
+      rgba(74, 144, 226, 0.1), /* رنگ نور آبی */
+      transparent 40% /* محو شدن تا 40% */
+    );
 }
 
-.page-header {
-  text-align: center;
-  padding: 10vh 2rem 5vh;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.page-header h1 {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  color: var(--primary-color);
-  font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 1rem;
-  letter-spacing: -0.03em;
-}
-
-.page-header p {
-  font-size: clamp(1rem, 2vw, 1.125rem);
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-
-.scroll-hint {
-  margin: 3rem 0;
-  color: var(--text-color);
-  font-size: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  animation: bounce 2s infinite ease-in-out;
-}
-
-/* Main Timeline Container */
-.timeline-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 5vh 2rem 20vh;
-}
-
-/* The Central Timeline Line (with Scroll-driven progress) */
-.timeline-line {
-  position: absolute;
+.scroll-watcher {
+  height: 5px;
+  position: fixed;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 2px;
-  height: 100%;
-  background-color: var(--line-color);
-}
-
-.timeline-line-progress {
+  z-index: 1000;
+  background-color: rgb(12, 41, 225);
   width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to bottom,
-    var(--accent-glow),
-    var(--primary-color)
-  );
-  transform-origin: top;
-  transform: scaleY(0); /* Initially Hidden */
-
-  /* The magic: Link animation to scroll progress */
-  animation: fill-line linear forwards;
+  scale: 0 1;
+  transform-origin: left;
+  animation: scroll-watcher linear forwards;
   animation-timeline: scroll(root);
+
+
 }
 
-/* Individual Timeline Section */
+@keyframes scroll-watcher {
+  to {
+    scale: 1 1;
+  }
+}
+/* ================================================
+   هدر صفحه - بخش معرفی
+   ================================================ */
+
+/* کانتینر اصلی هدر */
+.page-header {
+  text-align: center; /* تراز متن به وسط */
+  padding: 10vh 2rem 5vh; /* فاصله از بالا 10% ارتفاع صفحه، از پایین 5% */
+  max-width: 800px; /* حداکثر عرض برای نمایش بهتر در صفحات بزرگ */
+  margin: 0 auto; /* مرکز‌چینی در صفحه */
+}
+
+/* عنوان اصلی صفحه */
+.page-header h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem); /* اندازه متن واکنش‌گرا */
+  color: var(--primary-color); /* رنگ سفید */
+  font-weight: 700; /* ضخامت متن زیاد */
+  line-height: 1.1; /* فاصله بین خطوط کم */
+  margin-bottom: 1rem; /* فاصله از زیرین */
+  letter-spacing: -0.03em; /* فاصله بین حروف کم */
+}
+
+/* متن توضیحات زیر عنوان */
+.page-header p {
+  font-size: clamp(1rem, 2vw, 1.125rem); /* اندازه متن واکنش‌گرا */
+  max-width: 600px; /* محدودیت عرض برای خوانایی بهتر */
+  margin: 0 auto; /* مرکز‌چینی */
+  line-height: 1.6; /* فاصله بین خطوط استاندارد */
+}
+
+/* ================================================
+   بخش راهنمای اسکرول - آیکون پایین‌رفتن
+   ================================================ */
+
+/* کانتینر آیکون راهنمای اسکرول */
+.scroll-hint {
+  margin: 3rem 0; /* فاصله عمودی 3rem از بالا و پایین */
+  color: var(--text-color); /* رنگ خاکستری */
+  font-size: 2rem; /* اندازه آیکون بزرگ */
+  display: flex; /* نمایش فلکسیبل */
+  justify-content: center; /* مرکز‌چینی افقی */
+  align-items: center; /* مرکز‌چینی عمودی */
+  gap: 0.5rem; /* فاصله بین آیکون و متن */
+  animation: bounce 2s infinite ease-in-out; /* انیمیشن جهندن بی‌نهایت */
+}
+
+/* ================================================
+   کانتینر اصلی تایم‌لاین
+   ================================================ */
+
+/* کانتینر اصلی که تمام محتوای تایم‌لاین را در بر می‌گیرد */
+.timeline-wrapper {
+  position: relative; /* موقعیت نسبی برای قرارگیری عناصر داخلی */
+  width: 100%; /* عرض کامل */
+  max-width: 1000px; /* حداکثر عرض برای صفحات بزرگ */
+  margin: 0 auto; /* مرکز‌چینی در صفحه */
+  padding: 5vh 2rem 20vh; /* فاصله: 5% از بالا، 2rem کناری، 20% از پایین */
+}
+
+/* ================================================
+   خط مرکزی تایم‌لاین - با انیمیشن پر شدن
+   ================================================ */
+
+/* خط عمودی مرکزی که تایم‌لاین را نشان می‌دهد */
+.timeline-line {
+  position: absolute; /* موقعیت مطلق نسبت به والد */
+  top: 0; /* شروع از بالا */
+  left: 50%; /* قرارگیری در وسط */
+  transform: translateX(-50%); /* تنظیم دقیق مرکز */
+  width: 2px; /* عرض خط باریک */
+  height: 100%; /* ارتفاع کامل کانتینر */
+  background-color: var(--line-color); /* رنگ خاکستری تیره */
+}
+
+/* خطی که با اسکرول پر می‌شود - انیمیشن اصلی */
+.timeline-line-progress {
+  width: 100%; /* عرض کامل خط */
+  height: 100%; /* ارتفاع کامل */
+  background: linear-gradient(
+    to bottom, /* گرادیان از بالا به پایین */
+    var(--accent-glow), /* شروع با رنگ آبی درخشان */
+    var(--primary-color) /* پایان با سفید */
+  );
+  transform-origin: top; /* نقطه شروع انیمیشن از بالا */
+  transform: scaleY(0); /* ابتدا مخفی است */
+
+  /* انیمیشن شگفت‌انگیز: پر شدن خط با اسکرول */
+  animation: fill-line linear forwards; /* انیمیشن خطی بدون برگشت */
+  animation-timeline: scroll(root); /* لینک به اسکرول صفحه */  
+  /* روت یعنی نسبت اسکرول به کل صفحه */
+}
+
+/* ================================================
+   بخش‌های انفرادی تایم‌لاین
+   ================================================ */
+
+/* هر آیتم تایم‌لاین - کانتینر اصلی */
 .timeline-section {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  justify-content: flex-start;
-  padding: 4rem 0;
-  min-height: 300px;
+  position: relative; /* موقعیت نسبی برای عناصر داخلی */
+  z-index: 2; /* بالاتر از خط تایم‌لاین */
+  display: flex; /* نمایش فلکسیبل */
+  justify-content: flex-start; /* تراز به چپ */
+  padding: 4rem 0; /* فاصله عمودی 4rem بین آیتم‌ها */
+  min-height: 300px; /* حداقل ارتفاع برای فضای کافی */
 }
 
-/* Alternative Layout for even section */
+/* تنظیم آیتم‌های زوج به راست */
 .timeline-section:nth-child(even) {
-  justify-content: flex-end;
+  justify-content: flex-end; /* تراز به راست برای آیتم‌های زوج */
 }
 
-/* The Dot on the Timeline */
+/* ================================================
+   نقاط نشانگر روی خط تایم‌لاین
+   ================================================ */
+
+/* دایره‌های کوچک روی خط تایم‌لاین */
 .timeline-marker {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 18px;
-  height: 18px;
-  background-color: var(--bg-color);
-  border: 2px solid var(--line-color);
-  border-radius: 50%;
-  z-index: 3;
-  transition: background-color 0.3s, border-color 0.3s;
+  position: absolute; /* موقعیت مطلق نسبت به والد */
+  top: 0; /* شروع از بالای آیتم */
+  left: 50%; /* مرکز خط تایم‌لاین */
+  transform: translateX(-50%); /* تنظیم دقیق مرکز */
+  width: 18px; /* قطر دایره */
+  height: 18px; /* قطر دایره */
+  background-color: var(--bg-color); /* رنگ پس‌زمینه مشکی */
+  border: 2px solid var(--line-color); /* حاشیه خاکستری */
+  border-radius: 50%; /* شکل دایره کامل */
+  z-index: 3; /* بالاتر از خط تایم‌لاین */
+  transition: background-color 0.3s, border-color 0.3s; /* انیمیشن تغییر رنگ */
 
-  /* Animation marker when it is in the middle of scroll-timeline-name:  */
-  animation: light-up linear forwards;
-  animation-timeline: view();
-  animation-range: contain 40% contain 60%;
+  /* انیمیشن روشن شدن وقتی به مرکز می‌رسد */
+  animation: light-up linear forwards; /* انیمیشن خطی بدون برگشت */
+  animation-timeline: view(); /* لینک به موقعیت در صفحه */
+  animation-range: contain 40% contain 60%; /* فعال شدن در 40-60% صفحه */
 }
 
+/* ================================================
+   کارت‌های محتوا - کارت‌های اطلاعاتی
+   ================================================ */
+
+/* کانتینر محتوای هر آیتم تایم‌لاین */
 .timeline-content {
-  width: calc(50% - 40px);
-  padding: 2rem;
-  background: var(--card-bg);
-  border-radius: 12px;
-  border: 1px solid var(--card-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-  position: relative;
+  width: calc(50% - 40px); /* عرض نصف صفحه منهای فاصله از خط */
+  padding: 2rem; /* فاصله داخلی 2rem */
+  background: var(--card-bg); /* پس‌زمینه نیمه‌شفاف مشکی */
+  border-radius: 12px; /* گوشه‌های گرد 12px */
+  border: 1px solid var(--card-bg); /* حاشیه با رنگ پس‌زمینه */
+  backdrop-filter: blur(12px); /* افکت بلور پس‌زمینه */
+  -webkit-backdrop-filter: blur(12px); /* پشتیبانی Safari */
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); /* سایه ملایم */
+  position: relative; /* موقعیت نسبی */
 
-  /* Animation content as it enters the viewport */
-  animation: fade-in-up linear forwards;
-  animation-timeline: view();
-  animation-range: entry 20% cover 50%;
+  /* انیمیشن ظاهر شدن با اسکرول */
+  animation: fade-in-up linear forwards; /* انیمیشن خطی بدون برگشت */
+  animation-timeline: view(); /* لینک به موقعیت در صفحه */
+  animation-range: entry 20% cover 50%; /* فعال شدن از 20% تا 50% */
 }
 
+/* تنظیم متن کارت‌های سمت راست */
 .timeline-section:nth-child(even) .timeline-content {
-  text-align: left;
+  text-align: left; /* تراز متن به چپ برای آیتم‌های راست */
 }
 
+/* ================================================
+   عناصر متنی داخل کارت‌ها
+   ================================================ */
+
+/* سال نمایش داده شده */
 .timeline-year {
-  font-size: clamp(1rem, 2vw, 1.1rem);
-  font-weight: 500;
-  color: var(--primary-color);
-  margin-bottom: 0.75rem;
-  letter-spacing: 0.05em;
+  font-size: clamp(1rem, 2vw, 1.1rem); /* اندازه متن واکنش‌گرا */
+  font-weight: 500; /* ضخامت متن متوسط */
+  color: var(--primary-color); /* رنگ سفید */
+  margin-bottom: 0.75rem; /* فاصله از زیرین */
+  letter-spacing: 0.05em; /* فاصله بین حروف */
 }
 
+/* عنوان اصلی هر آیتم */
 .timeline-title {
-  font-size: clamp(1.5rem, 4vw, 1.75rem);
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: var(--primary-color);
-  line-height: 1.2;
+  font-size: clamp(1.5rem, 4vw, 1.75rem); /* اندازه متن واکنش‌گرا */
+  font-weight: 700; /* ضخامت متن زیاد */
+  margin-bottom: 1rem; /* فاصله از زیرین */
+  color: var(--primary-color); /* رنگ سفید */
+  line-height: 1.2; /* فاصله بین خطوط کم */
 }
 
+/* متن توضیحات هر آیتم */
 .timeline-description {
-  font-size: clamp(0.9rem, 1.5vw, 1rem);
-  line-height: 1.6;
-  font-weight: 300;
+  font-size: clamp(0.9rem, 1.5vw, 1rem); /* اندازه متن واکنش‌گرا */
+  line-height: 1.6; /* فاصله بین خطوط استاندارد */
+  font-weight: 300; /* ضخامت متن کم برای خوانایی بهتر */
 }
 
-/* KeyFrame Animation */
+/* ================================================
+   انیمیشن‌های کلیدی
+   ================================================ */
+
+/* انیمیشن پر شدن خط تایم‌لاین از بالا به پایین */
 @keyframes fill-line {
   to {
-    transform: scaleY(1);
+    transform: scaleY(1); /* مقیاس‌دهی کامل در انتها */
   }
 }
 
+/* انیمیشن روشن شدن نقاط نشانگر */
 @keyframes light-up {
   from {
-    border-color: var(--line-color);
-    background-color: var(--bg-color);
-    box-shadow: none;
+    border-color: var(--line-color); /* رنگ حاشیه خاکستری */
+    background-color: var(--bg-color); /* رنگ پس‌زمینه مشکی */
+    box-shadow: none; /* بدون سایه */
   }
   50% {
-    border-color: var(--primary-color);
-    background-color: var(--primary-color);
-    box-shadow: 0 0 15px 5px var(--accent-glow);
+    border-color: var(--primary-color); /* تغییر به سفید */
+    background-color: var(--primary-color); /* تغییر به سفید */
+    box-shadow: 0 0 15px 5px var(--accent-glow); /* افکت درخشش آبی */
   }
   100% {
-    border-color: var(--primary-color);
-    background-color: var(--primary-color);
-    box-shadow: 0 0 15px 5px var(--accent-glow);
+    border-color: var(--primary-color); /* نهایتاً سفید */
+    background-color: var(--primary-color); /* نهایتاً سفید */
+    box-shadow: 0 0 15px 5px var(--accent-glow); /* حفظ درخشش */
   }
 }
 
+/* انیمیشن ظاهر شدن کارت‌ها از پایین */
 @keyframes fade-in-up {
   from {
-    opacity: 0;
-    transform: translateY(50px) scale(0.65);
+    opacity: 0; /* کاملاً شفاف */
+    transform: translateY(50px) scale(0.8); /* پایین‌تر و کوچک‌تر */
   }
   to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+    opacity: 1; /* کاملاً نمایان */
+    transform: translateY(0) scale(1); /* موقعیت و اندازه اصلی */
   }
 }
 
+/* انیمیشن جهندن آیکون اسکرول */
 @keyframes bounce {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateY(0);
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0); /* موقعیت اصلی */
   }
   40% {
-    transform: translateY(-10px);
+    transform: translateY(-10px); /* بالا رفتن 10px */
   }
   60% {
-    transform: translateY(-5px);
+    transform: translateY(-5px); /* بالا رفتن 5px */
   }
 }
 
-/* Responsive Design */
+/* ================================================
+   طراحی واکنش‌گرا - موبایل و تبلت
+   ================================================ */
+
+/* تنظیمات برای صفحات کوچکتر از 768px */
 @media (max-width: 768px) {
+  /* کانتینر اصلی تایم‌لاین در موبایل */
   .timeline-wrapper {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 1rem; /* فاصله کمتر از چپ */
+    padding-right: 1rem; /* فاصله کمتر از راست */
   }
 
+  /* خط تایم‌لاین در موبایل - انتقال به چپ */
   .timeline-line {
-    left: 20px;
-    transform: none;
+    left: 20px; /* فاصله 20px از چپ */
+    transform: none; /* حذف مرکز‌چینی */
   }
 
+  /* نقاط نشانگر در موبایل - انتقال به چپ */
   .timeline-marker {
-    left: 20px;
-    transform: none;
+    left: 20px; /* فاصله 20px از چپ */
+    transform: none; /* حذف مرکز‌چینی */
   }
 
+  /* تمام آیتم‌ها در موبایل - تراز به چپ */
   .timeline-section,
   .timeline-section:nth-child(even) {
-    justify-content: flex-start;
-    padding-left: 40px;
+    justify-content: flex-start; /* تراز به چپ */
+    padding-left: 40px; /* فاصله برای خط و نقطه */
   }
 
+  /* کارت‌های محتوا در موبایل - عرض کامل */
   .timeline-content,
   .timeline-section:nth-child(even) .timeline-content {
-    width: 100%;
-    text-align: left;
+    width: 100%; /* عرض کامل */
+    text-align: left; /* تراز متن به چپ */
   }
 }
