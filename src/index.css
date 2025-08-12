@@ -161,6 +161,8 @@ body {
   animation: fill-line linear forwards; /* انیمیشن خطی بدون برگشت */
   animation-timeline: scroll(root); /* لینک به اسکرول صفحه */  
   /* روت یعنی نسبت اسکرول به کل صفحه */
+      animation-duration: 1ms; /* برای سازگاری با فایرفاکس */
+
 }
 
 /* ================================================
@@ -204,6 +206,8 @@ body {
   animation: light-up linear forwards; /* انیمیشن خطی بدون برگشت */
   animation-timeline: view(); /* لینک به موقعیت در صفحه */
   animation-range: contain 40% contain 60%; /* فعال شدن در 40-60% صفحه */
+      animation-duration: 1ms; /* برای سازگاری با فایرفاکس */
+
 }
 
 /* ================================================
@@ -226,6 +230,8 @@ body {
   animation: fade-in-up linear forwards; /* انیمیشن خطی بدون برگشت */
   animation-timeline: view(); /* لینک به موقعیت در صفحه */
   animation-range: entry 20% cover 50%; /* فعال شدن از 20% تا 50% */
+      animation-duration: 1ms; /* برای سازگاری با فایرفاکس */
+
 }
 
 /* تنظیم متن کارت‌های سمت راست */
