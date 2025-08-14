@@ -1,6 +1,7 @@
 import { RiArrowDownLine } from "react-icons/ri";
 import ParallaxScroll from "./ParallaxScroll";
 import ArticleSection from "./components/ArticleSection";
+import  ScrollerTimeLine from "./components/Scroller";
 interface TimelineItem {
   year: string;
   title: string;
@@ -82,6 +83,8 @@ function App() {
       </main>
       {/* <ParallaxScroll/> */}
       <ArticleSection/>
+      {/* Remove type-only import usage */}
+      <ScrollerTimeLine/>
     </>
   );
 }

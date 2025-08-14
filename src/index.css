@@ -524,3 +524,123 @@ body {
     height: 200px;
   }
 }
+
+
+/* //////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////// */
+
+
+.scroller-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 2rem 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* سایه‌های گرادینت در دو طرف */
+.shadow-left,
+.shadow-right {
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.shadow-left {
+  left: 0;
+  background: linear-gradient(90deg, rgba(102, 126, 234, 0.8) 0%, transparent 100%);
+}
+
+.shadow-right {
+  right: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(118, 75, 162, 0.8) 100%);
+}
+
+.scroller-row {
+  position: relative;
+  height: 80px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.scroller-track {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  white-space: nowrap;
+}
+
+.scroller-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: max-content;
+  padding: 0.75rem 1.5rem;
+  margin: 0 0.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.scroller-item:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+}
+
+/* انیمیشن اسکرول بی‌نهایت */
+.scroller-track-right {
+  animation: scroll-right 20s linear infinite;
+}
+
+.scroller-track-left {
+  animation: scroll-left 20s linear infinite;
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* طراحی واکنش‌گرا */
+@media (max-width: 768px) {
+  .scroller-item {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    margin: 0 0.25rem;
+  }
+  
+  .shadow-left,
+  .shadow-right {
+    width: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .scroller-item {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+  }
+}
