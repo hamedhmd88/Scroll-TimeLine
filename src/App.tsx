@@ -80,7 +80,7 @@ function App() {
           </div>
         ))}
       </main>
-      <ParallaxScroll/>
+      {/* <ParallaxScroll/> */}
       <ArticleSection/>
     </>
   );

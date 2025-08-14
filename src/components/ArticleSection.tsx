@@ -66,6 +66,7 @@ function ArticleSection() {
               src={article.image} 
               alt={article.title}
               className="article-image"
+              loading="lazy"
             />
             <div className="article-content">
               {article.content.map((paragraph, index) => (
