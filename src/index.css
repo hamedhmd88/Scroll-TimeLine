@@ -32,7 +32,8 @@ body {
   background-color: var(--bg-color); /* رنگ پس‌زمینه از متغیر */
   color: var(--text-color); /* رنگ متن از متغیر */
   font-family: sans-serif; /* فونت پیش‌فرض سیستم */
-  
+    overflow-x: hidden;
+
   /* افکت گرادیان پس‌زمینه - ایجاد نورهای ملایم */
   background-image: radial-gradient(
       circle at 10% 10%, /* نقطه شروع نور اول - بالا چپ */
@@ -360,4 +361,31 @@ body {
     width: 100%; /* عرض کامل */
     text-align: left; /* تراز متن به چپ */
   }
+}
+
+
+/* /////////////////////////////////////////////////// */
+
+.section {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.row {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.item {
+  width: 100%;
+  background: #6a6868;
+  border-radius: 20px;
 }

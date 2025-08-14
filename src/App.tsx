@@ -1,4 +1,5 @@
 import { RiArrowDownLine } from "react-icons/ri";
+import ParallaxScroll from "./ParallaxScroll";
 interface TimelineItem {
   year: string;
   title: string;
@@ -78,6 +79,7 @@ function App() {
           </div>
         ))}
       </main>
+      <ParallaxScroll/>
     </>
   );
 }
