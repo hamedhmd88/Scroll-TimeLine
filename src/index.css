@@ -129,6 +129,9 @@ body {
   max-width: 1000px; /* حداکثر عرض برای صفحات بزرگ */
   margin: 0 auto; /* مرکز‌چینی در صفحه */
   padding: 5vh 2rem 20vh; /* فاصله: 5% از بالا، 2rem کناری، 20% از پایین */
+  min-height: 100vh; /* اضافه کردن حداقل ارتفاع برای پر کردن صفحه */
+  /* اضافه کردن ارتفاع خودکار برای پر کردن صفحه */
+  height: auto;
 }
 
 /* ================================================
@@ -160,9 +163,9 @@ body {
 
   /* انیمیشن شگفت‌انگیز: پر شدن خط با اسکرول */
   animation: fill-line linear forwards; /* انیمیشن خطی بدون برگشت */
-  animation-timeline: scroll(root); /* لینک به اسکرول صفحه */  
-  /* روت یعنی نسبت اسکرول به کل صفحه */
-      animation-duration: 1ms; /* برای سازگاری با فایرفاکس */
+  animation-timeline: view();
+  animation-range: entry 0% exit 100%;
+  animation-duration: 1ms;
 
 }
 
@@ -188,7 +191,15 @@ body {
 /* ================================================
    نقاط نشانگر روی خط تایم‌لاین
    ================================================ */
-
+/* اولین مارکر - فعال از ابتدا */
+.timeline-section:first-child .timeline-marker {
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
+  box-shadow: 0 0 15px 5px var(--accent-glow);
+  
+  /* غیرفعال کردن انیمیشن برای اولین مارکر */
+  animation: none;
+}
 /* دایره‌های کوچک روی خط تایم‌لاین */
 .timeline-marker {
   position: absolute; /* موقعیت مطلق نسبت به والد */

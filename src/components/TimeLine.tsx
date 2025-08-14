@@ -1,0 +1,270 @@
+// import { RiArrowDownLine } from "react-icons/ri";
+
+// interface TimelineItem {
+//   year: string;
+//   title: string;
+//   description: string;
+// }
+// function TimeLine() {
+//   const timelineData: TimelineItem[] = [
+//     {
+//       year: "2023",
+//       title: "The First Step",
+//       description:
+//         "2023 marked the beginning of my coding journey. From writing my first HTML tag to exploring CSS animations, this year was about learning, failing, and growing as a self-taught developer.",
+//     },
+//     {
+//       year: "2024",
+//       title: "Diving into JavaScript",
+//       description:
+//         "In 2024, I focused on mastering JavaScript fundamentals, building interactive web applications, and understanding the logic that powers modern websites.",
+//     },
+//     {
+//       year: "2025",
+//       title: "Exploring React",
+//       description:
+//         "2025 was all about learning React. I created dynamic components, managed state efficiently, and discovered the power of reusable UI design.",
+//     },
+//     {
+//       year: "2026",
+//       title: "Building Full-Stack Projects",
+//       description:
+//         "I ventured into full-stack development, connecting frontend React apps to backend APIs and databases, and deploying my projects for the world to see.",
+//     },
+//     {
+//       year: "2027",
+//       title: "Becoming a Mentor",
+//       description:
+//         "By 2027, I began mentoring new developers, sharing my knowledge, and contributing to open-source projects to give back to the community.",
+//     },
+//     {
+//       year: "2027",
+//       title: "Becoming a Mentor",
+//       description:
+//         "By 2027, I began mentoring new developers, sharing my knowledge, and contributing to open-source projects to give back to the community.",
+//     },
+//     {
+//       year: "2027",
+//       title: "Becoming a Mentor",
+//       description:
+//         "By 2027, I began mentoring new developers, sharing my knowledge, and contributing to open-source projects to give back to the community.",
+//     },
+//   ];
+//   return (
+//     <>
+//       <header className="page-header">
+//         <h1>The Journey Of Coding</h1>
+//         <p>
+//           Welcome to the Code With Me - where every line of code brings us
+//           closer to mastery. Join the journey through powerful about progress.
+//           Let\'s build the future together!
+//         </p>
+//       </header>
+//       <div className="scroll-hint">
+//         <RiArrowDownLine />
+//       </div>
+//       <main className="timeline-wrapper">
+//         <div className="timeline-line">
+//           <div className="timeline-line-progress"></div>
+//         </div>
+//         {timelineData.map((item, index) => (
+//           <div className="timeline-section" key={index}>
+//             <div className="timeline-marker"></div>
+//             <div className="timeline-content">
+//               <div className="timeline-year">{item.year}</div>
+//               <h3 className="timeline-title">{item.title}</h3>
+//               <p className="timeline-description">{item.description}</p>
+//             </div>
+//           </div>
+//         ))}
+//       </main>
+//     </>
+//   );
+// }
+
+// export default TimeLine;
+
+import { useEffect, useRef, useState } from "react";
+
+import { RiArrowDownLine } from "react-icons/ri";
+
+interface TimelineItem {
+  year: string;
+  title: string;
+  description: string;
+}
+function TimeLine() {
+  const lineProgressRef = useRef<HTMLDivElement>(null);
+  const sectionsRef = useRef<HTMLDivElement[]>([]);
+  const markersRef = useRef<HTMLDivElement[]>([]);
+  const contentsRef = useRef<HTMLDivElement[]>([]);
+  const [progress, setProgress] = useState(0);
+  const timelineData: TimelineItem[] = [
+    {
+      year: "2023",
+      title: "The First Step",
+      description:
+        "2023 marked the beginning of my coding journey. From writing my first HTML tag to exploring CSS animations, this year was about learning, failing, and growing as a self-taught developer.",
+    },
+    {
+      year: "2024",
+      title: "Diving into JavaScript",
+      description:
+        "In 2024, I focused on mastering JavaScript fundamentals, building interactive web applications, and understanding the logic that powers modern websites.",
+    },
+    {
+      year: "2025",
+      title: "Exploring React",
+      description:
+        "2025 was all about learning React. I created dynamic components, managed state efficiently, and discovered the power of reusable UI design.",
+    },
+    {
+      year: "2026",
+      title: "Building Full-Stack Projects",
+      description:
+        "I ventured into full-stack development, connecting frontend React apps to backend APIs and databases, and deploying my projects for the world to see.",
+    },
+    {
+      year: "2027",
+      title: "Becoming a Mentor",
+      description:
+        "By 2027, I began mentoring new developers, sharing my knowledge, and contributing to open-source projects to give back to the community.",
+    },
+    {
+      year: "2027",
+      title: "Becoming a Mentor",
+      description:
+        "By 2027, I began mentoring new developers, sharing my knowledge, and contributing to open-source projects to give back to the community.",
+    },
+    {
+      year: "2027",
+      title: "Becoming a Mentor",
+      description:
+        "By 2027, I began mentoring new developers, sharing my knowledge, and contributing to open-source projects to give back to the community.",
+    },
+  ];
+
+  // تابع برای به‌روزرسانی پیشرفت خط
+  const updateProgress = () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const height =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+    setProgress((scrollTop / height) * 100);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", updateProgress);
+    return () => window.removeEventListener("scroll", updateProgress);
+  }, []);
+
+  // IntersectionObserver برای مارکرها و کارت‌ها
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("light-up"); // کلاس برای انیمیشن مارکر
+            entry.target.classList.add("fade-in-up"); // کلاس برای کارت
+          }
+        });
+      },
+      { threshold: 0.4 }
+    ); // فعال شدن در 40% ویوپورت
+
+    sectionsRef.current.forEach((section) => {
+      if (section) observer.observe(section);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+  // در useEffect برای observer:
+  useEffect(() => {
+    const markerObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("light-up");
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+
+    const contentObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in-up");
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+
+    markersRef.current.forEach(
+      (marker) => marker && markerObserver.observe(marker)
+    );
+    contentsRef.current.forEach(
+      (content) => content && contentObserver.observe(content)
+    );
+
+    return () => {
+      markerObserver.disconnect();
+      contentObserver.disconnect();
+    };
+  }, []);
+  return (
+    <>
+      <header className="page-header">
+        <h1>The Journey Of Coding</h1>
+        <p>
+          Welcome to the Code With Me - where every line of code brings us
+          closer to mastery. Join the journey through powerful about progress.
+          Let\'s build the future together!
+        </p>
+      </header>
+      <div className="scroll-hint">
+        <RiArrowDownLine />
+      </div>
+      <div className="timeline-wrapper">
+        <div className="timeline-line">
+          <div
+            ref={lineProgressRef}
+            className="timeline-line-progress"
+            style={{ height: `${progress}%` }} // پر کردن خط با JS
+          ></div>
+        </div>
+        {timelineData.map((item, index) => (
+          <div
+            key={index}
+            className={`timeline-section ${index % 2 === 0 ? "" : "even"}`}
+            // ref={(el) => {
+            //   if (el) sectionsRef.current[index] = el;
+            // }}
+          >
+            <div
+              className="timeline-marker"
+              ref={(el) => {
+                if (el) markersRef.current[index] = el;
+              }}
+            ></div>{" "}
+            <div
+              className="timeline-content"
+              ref={(el) => {
+                if (el) contentsRef.current[index] = el;
+              }}
+            >
+              {" "}
+              <div className="timeline-year">{item.year}</div>
+              <h3 className="timeline-title">{item.title}</h3>
+              <p className="timeline-description">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
+
+export default TimeLine;
