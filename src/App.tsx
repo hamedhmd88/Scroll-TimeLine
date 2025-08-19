@@ -3,6 +3,7 @@ import ParallaxScroll from "./ParallaxScroll";
 import ArticleSection from "./components/ArticleSection";
 import  ScrollerTimeLine from "./components/Scroller";
 import ScrollerTimeLineTwo from "./components/Scroller2";
+import InfiniteScrollPosts from "./components/InfiniteScrollPosts";
 interface TimelineItem {
   year: string;
   title: string;
@@ -88,6 +89,7 @@ function App() {
       
       {/* Remove type-only import usage */}
       <ScrollerTimeLine/>
+      <InfiniteScrollPosts/>
     </>
   );
 }
