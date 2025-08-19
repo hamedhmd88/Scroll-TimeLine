@@ -537,7 +537,7 @@ body {
   width: 100%;
   overflow: hidden;
   padding: 2rem 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  /* background: linear-gradient(135deg, #060606 0%, #000000 100%); */
 }
 
 /* سایه‌های گرادینت در دو طرف */
@@ -545,7 +545,7 @@ body {
 .shadow-right {
   position: absolute;
   top: 0;
-  width: 100px;
+  width: 250px;
   height: 100%;
   z-index: 10;
   pointer-events: none;
@@ -553,17 +553,17 @@ body {
 
 .shadow-left {
   left: 0;
-  background: linear-gradient(90deg, rgba(102, 126, 234, 0.8) 0%, transparent 100%);
+  background: linear-gradient(90deg, rgba(4, 4, 4, 1) 0%, transparent 100%);
 }
 
 .shadow-right {
   right: 0;
-  background: linear-gradient(90deg, transparent 0%, rgba(118, 75, 162, 0.8) 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(5, 5, 5, 1) 100%);
 }
 
 .scroller-row {
   position: relative;
-  height: 80px;
+  height: 50px;
   margin-bottom: 1rem;
   overflow: hidden;
 }
@@ -579,10 +579,10 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: max-content;
+  width: max-content;
   padding: 0.75rem 1.5rem;
   margin: 0 0.5rem;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgb(47, 47, 47);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 25px;
   color: white;
@@ -593,17 +593,17 @@ body {
 }
 
 .scroller-item:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(66, 65, 65, 0.858);
   transform: scale(1.05);
 }
 
 /* انیمیشن اسکرول بی‌نهایت */
 .scroller-track-right {
-  animation: scroll-right 20s linear infinite;
+  animation: scroll-right 40s linear infinite;
 }
 
 .scroller-track-left {
-  animation: scroll-left 20s linear infinite;
+  animation: scroll-left 40s linear infinite;
 }
 
 @keyframes scroll-right {
@@ -642,5 +642,25 @@ body {
   .scroller-item {
     padding: 0.4rem 0.8rem;
     font-size: 0.75rem;
+  }
+}
+
+/* /////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////// */
+
+.scroller-line {
+  animation: scrolling  linear ;
+  animation-timeline: scroll(root);
+}
+.scrollertimeline-right {
+  animation-direction: reverse;
+}
+
+@keyframes scrolling {
+  to {
+    transform: translate(calc(-50% - 0.5rem));
+
   }
 }
