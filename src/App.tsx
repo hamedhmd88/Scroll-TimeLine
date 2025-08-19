@@ -1,7 +1,7 @@
 import { RiArrowDownLine } from "react-icons/ri";
 import ParallaxScroll from "./ParallaxScroll";
 import ArticleSection from "./components/ArticleSection";
-import  ScrollerTimeLine from "./components/Scroller";
+import ScrollerTimeLine from "./components/Scroller";
 import ScrollerTimeLineTwo from "./components/Scroller2";
 import InfiniteScrollPosts from "./components/InfiniteScrollPosts";
 interface TimelineItem {
@@ -56,7 +56,7 @@ function App() {
   ];
   return (
     <>
-    <div className="scroll-watcher"></div>
+      <div className="scroll-watcher"></div>
       <header className="page-header">
         <h1>The Journey Of Coding</h1>
         <p>
@@ -84,12 +84,12 @@ function App() {
         ))}
       </main>
       {/* <ParallaxScroll/> */}
-      <ArticleSection/>
-      <ScrollerTimeLineTwo/>
-      
+      <ArticleSection />
+      <ScrollerTimeLineTwo />
+
+      <InfiniteScrollPosts />
       {/* Remove type-only import usage */}
-      <ScrollerTimeLine/>
-      <InfiniteScrollPosts/>
+      <ScrollerTimeLine />
     </>
   );
 }
