@@ -772,11 +772,17 @@ body {
   opacity: 0.5;
   object-fit: cover;
   z-index: -1;
+
+    animation: header-image-animation linear forwards;
+
+  animation-timeline: view();
+  animation-range: exit;
 }
 
 @keyframes fade-out {
-  to { opacity: 0;}
+  to { opacity: 0; }
 }
 @keyframes header-image-animation {
-  
+  25% {opacity: 1}
+  85%, 100% {opacity: 0; scale: 3;}
 }
