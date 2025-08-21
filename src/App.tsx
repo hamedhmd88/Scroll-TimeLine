@@ -4,6 +4,7 @@ import ArticleSection from "./components/ArticleSection";
 import ScrollerTimeLine from "./components/Scroller";
 import ScrollerTimeLineTwo from "./components/Scroller2";
 import InfiniteScrollPosts from "./components/InfiniteScrollPosts";
+import ArticleHeader from "./components/ArticleHeader";
 interface TimelineItem {
   year: string;
   title: string;
@@ -84,6 +85,7 @@ function App() {
         ))}
       </main>
       {/* <ParallaxScroll/> */}
+      <ArticleHeader/>
       <ArticleSection />
       <ScrollerTimeLineTwo />
 
