@@ -86,9 +86,9 @@ function App() {
         ))}
       </main>
       {/* <ParallaxScroll/> */}
+      <TextReveal/>
       <ArticleHeader/>
       <ArticleSection />
-      <TextReveal/>
       <ScrollerTimeLineTwo />
 
       <InfiniteScrollPosts />
