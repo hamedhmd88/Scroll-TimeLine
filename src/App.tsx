@@ -6,6 +6,7 @@ import ScrollerTimeLineTwo from "./components/Scroller2";
 import InfiniteScrollPosts from "./components/InfiniteScrollPosts";
 import ArticleHeader from "./components/ArticleHeader";
 import TextReveal from "./components/TextReveal";
+import GSAPSplitText from "./components/GSAPSplitText";
 interface TimelineItem {
   year: string;
   title: string;
@@ -87,6 +88,7 @@ function App() {
       </main>
       {/* <ParallaxScroll/> */}
       <TextReveal/>
+      <GSAPSplitText/>
       <ArticleHeader/>
       <ArticleSection />
       <ScrollerTimeLineTwo />
