@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
-const GSAPSplitText: React.FC = () => {
+const GSAPScrollSplit: React.FC = () => {
   const textRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
@@ -19,12 +19,12 @@ const GSAPSplitText: React.FC = () => {
           end: ' bottom bottom',
           toggleActions: 'play none none none',
           once: false,             // فقط یک‌بار اجرا شود
-          markers: true           // برای تست، بعداً می‌توانید حذف کنید
+          markers: false           // برای تست، بعداً می‌توانید حذف کنید
         },
         opacity: 0,
         y: 50,
         duration: 0.5,
-        stagger: 0.5,
+        stagger: 0.1,
         ease: 'power2.out'
       });
     }
@@ -39,4 +39,4 @@ const GSAPSplitText: React.FC = () => {
   );
 };
 
-export default GSAPSplitText;
+export default GSAPScrollSplit;
